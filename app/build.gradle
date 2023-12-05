@@ -48,6 +48,8 @@ dependencies {
     implementation "androidx.compose.foundation:foundation-layout:$compose_version"
     implementation "androidx.activity:activity-compose:$compose_activity_version"
 
+    implementation "com.mxalbert.zoomable:zoomable:1.6.1"
+
     implementation "com.github.skydoves:landscapist-coil:$landscapist_version"
     implementation "com.github.skydoves:landscapist-placeholder:$landscapist_version"
 

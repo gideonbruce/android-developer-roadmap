@@ -34,6 +34,8 @@ import io.getstream.androiddeveloperroadmap.ui.theme.AndroidDeveloperRoadmapThem
 import io.getstream.androiddeveloperroadmap.ui.theme.shimmerHighLight
 import me.saket.telephoto.zoomable.rememberZoomableState
 import me.saket.telephoto.zoomable.zoomable
+import com.mxalbert.zoomable.Zoomable
+import coil.compose.rememberImagePainter
 
 class MainActivity : ComponentActivity() {
   override fun onCreate(savedInstanceState: Bundle?) {
@@ -53,20 +55,25 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 private fun AndroidRoadmap() {
-  val background = MaterialTheme.colors.background
-  CoilImage(
-    modifier = Modifier
-      .fillMaxSize()
-      .zoomable(rememberZoomableState()),
-    imageModel = { "https://user-images.githubusercontent.com/24237865/144350753-5a52e6e5-3517-476c-8e5c-adad919abe8e.png" },
-    component = rememberImageComponent {
-      // shows a shimmering effect when loading an image.
-      +ShimmerPlugin(
-        baseColor = background,
-        highlightColor = shimmerHighLight
-      )
-    },
-    imageOptions = ImageOptions(contentScale = ContentScale.Fit)
+  Zoomable(
+    modifier = Modifier.fillMaxSize()
+  ) {
+    Image(
+      painter = rememberImagePainter()
+      modifier = Modifier
+        .fillMaxSize()
+        .zoomable(rememberZoomableState()),
+      imageModel = { "https://user-images.githubusercontent.com/24237865/144350753-5a52e6e5-3517-476c-8e5c-adad919abe8e.png" },
+      component = rememberImageComponent {
+        // shows a shimmering effect when loading an image.
+        +ShimmerPlugin(
+          baseColor = background,
+          highlightColor = shimmerHighLight
+        )
+      },
+      imageOptions = ImageOptions(contentScale = ContentScale.Fit)
+    )
+  }
   )
 }
 
